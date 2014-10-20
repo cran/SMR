@@ -10,14 +10,22 @@ dSMR <- function(x, size, df, np = 32, log = FALSE)
   if (is.numeric(x) == FALSE) stop ("Non-numeric x argument to mathematical function", call. = FALSE)
   if (is.numeric(size) == FALSE) stop ("Non-numeric size argument to mathematical function", call. = FALSE)
   if (is.numeric(df) == FALSE) stop ("Non-numeric df argument to mathematical function", call. = FALSE)
-  nn <- length(x) 
-  if(nn < length(size) | nn < length(df)) stop("Length of the arguments size or df must not be greater than to the length of x", call. = FALSE)
-  if (nn == length(size))   xx <- cbind(x, size) else
-    if (length(size) == 1)  xx <- cbind(x, rep(size, times = nn))
-  if (nn == length(df))     xx <- cbind(xx, df) else
-    if (length(df) == 1)    xx <- cbind(xx, rep(df, times = nn))
-  if (nn == length(np))     xx <- cbind(xx, np) else
-    if (length(np) == 1)    xx <- cbind(xx, rep(np, times = nn))
+  
+  nn <- max(length(x),length(size),length(df),length(np))
+  
+  
+  if (nn == length(x) | length(x) > nn)          xx <- cbind(x) else
+    if (length(x) == 1 | length(x) < nn)         xx <- cbind(rep(x, length = nn))
+  
+  if (nn == length(size)| length(size) > nn)     xx <- cbind(xx, size) else
+    if (length(size) == 1 | length(size) < nn)   xx <- cbind(xx,rep(size, length = nn))
+  
+  if (nn == length(df)| length(df) > nn)         xx <- cbind(xx, df) else
+    if (length(df) == 1 | length(df) < nn)       xx <- cbind(xx,rep(df, length = nn))
+  
+  if (nn == length(np)| length(np) > nn)         xx <- cbind(xx, np) else
+    if (length(np) == 1 | length(np) < nn)       xx <- cbind(xx,rep(np, length = nn))
+  
   dtched <- function(xx) return(dMR(xx[1], xx[2], xx[3], xx[4]))
   d <- apply(xx, 1, dtched)
   if (log == TRUE) d <- log(d)
@@ -36,14 +44,21 @@ pSMR <- function(q, size, df, np = 32, lower.tail = TRUE, log.p = FALSE)
     if (is.numeric(q) == FALSE) stop ("Non-numeric q argument to mathematical function", call. = FALSE)
     if (is.numeric(size) == FALSE) stop ("Non-numeric size argument to mathematical function", call. = FALSE)
     if (is.numeric(df) == FALSE) stop ("Non-numeric df argument to mathematical function", call. = FALSE)
-    nn <- length(q)
-    if(nn < length(size) | nn < length(df)) stop("Length of the arguments size or df must not be greater than to the length of q", call. = FALSE)
-    if (nn == length(size))  xx <- cbind(q, size) else
-      if (length(size) == 1) xx <- cbind(q, rep(size, times = nn))
-    if (nn == length(df))    xx <- cbind(xx, df) else
-      if (length(df) == 1)   xx <- cbind(xx, rep(df, times = nn))
-    if (nn == length(np))    xx <- cbind(xx, np) else
-      if (length(np) == 1)   xx <- cbind(xx, rep(np, times = nn))
+    
+    nn <- max(length(q),length(size),length(df),length(np))
+    
+    if (nn == length(q) | length(q) > nn)          xx <- cbind(q) else
+      if (length(q) == 1 | length(q) < nn)         xx <- cbind(rep(q, length = nn))
+    
+    if (nn == length(size)| length(size) > nn)     xx <- cbind(xx, size) else
+      if (length(size) == 1 | length(size) < nn)   xx <- cbind(xx,rep(size, length = nn))
+    
+    if (nn == length(df)| length(df) > nn)         xx <- cbind(xx, df) else
+      if (length(df) == 1 | length(df) < nn)       xx <- cbind(xx,rep(df, length = nn))
+    
+    if (nn == length(np)| length(np) > nn)         xx <- cbind(xx, np) else
+      if (length(np) == 1 | length(np) < nn)       xx <- cbind(xx,rep(np, length = nn))
+    
     dtched <- function(xx) return(pMR(xx[1], xx[2], xx[3], xx[4]))
     p <- apply(xx, 1, dtched)
     if (lower.tail == FALSE) p <- 1 - p
@@ -69,18 +84,28 @@ qSMR <- function(p, size, df, np=32, eps=1e-13, maxit=5000, lower.tail=TRUE, log
   }
   if (lower.tail == FALSE) p <- 1 - p
   if (any(p[!is.nan(p)] > 1) | any(p[!is.nan(p)] < 0)) warning("Probabilities p must be between 0 and 1!", call. = FALSE)
-  nn <- length(p) 
-  if(nn < length(size) | nn < length(df)) stop("Length of the arguments size or df must not be greater than to the length of p", call. = FALSE)
-  if (nn == length(size))  xx <- cbind(p, size) else
-    if (length(size) == 1) xx <- cbind(p, rep(size, times = nn))
-  if (nn == length(df))    xx <- cbind(xx, df) else
-    if (length(df) == 1)   xx <- cbind(xx, rep(df, times = nn))
-  if (nn == length(np))    xx <- cbind(xx, np) else
-    if (length(np) == 1)   xx <- cbind(xx, rep(np, times = nn))
-  if (nn == length(eps))   xx <- cbind(xx, eps) else
-    if (length(eps) == 1)  xx <- cbind(xx, rep(eps, times = nn))
-  if (nn == length(maxit)) xx <- cbind(xx, maxit) else
-    if (length(maxit) == 1)  xx <- cbind(xx, rep(maxit, times = nn))  
+  
+  nn <- max(length(p),length(size),length(df),length(np),length(eps),length(maxit))
+  
+  
+  if (nn == length(p) | length(p) > nn)          xx <- cbind(p) else
+    if (length(p) == 1 | length(p) < nn)         xx <- cbind(rep(p, length = nn))
+    
+  if (nn == length(size)| length(size) > nn)     xx <- cbind(xx, size) else
+    if (length(size) == 1 | length(size) < nn)   xx <- cbind(xx,rep(size, length = nn))
+  
+  if (nn == length(df)| length(df) > nn)         xx <- cbind(xx, df) else
+    if (length(df) == 1 | length(df) < nn)       xx <- cbind(xx,rep(df, length = nn))
+  
+  if (nn == length(np)| length(np) > nn)         xx <- cbind(xx, np) else
+    if (length(np) == 1 | length(np) < nn)       xx <- cbind(xx,rep(np, length = nn))
+    
+  if (nn == length(eps)| length(eps) > nn)       xx <- cbind(xx, eps) else
+    if (length(eps) == 1 | length(eps) < nn)     xx <- cbind(xx,rep(eps, length = nn))
+  
+  if (nn == length(maxit)| length(maxit) > nn)   xx <- cbind(xx, maxit) else
+    if (length(maxit) == 1 | length(maxit) < nn) xx <- cbind(xx,rep(maxit, length = nn))
+  
   dtched <- function(xx) return(qMR(xx[1], xx[2], xx[3], xx[4], xx[5], xx[6]))  
   q <- apply(xx, 1, dtched)  
   return(q)
