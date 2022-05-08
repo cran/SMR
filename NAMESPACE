@@ -1,2 +1,3 @@
+importFrom("stats", "dnorm", "pnorm", "rchisq", "rnorm")
 export(dSMR, pSMR, qSMR, rSMR)
 

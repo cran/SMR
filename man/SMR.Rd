@@ -7,7 +7,7 @@
 \title{The externally studentized normal midrange distribution}
 
 \description{
-Computes the probability density, the cumulative distribution function and the quantile function and generates random samples for the  externally studentized normal midrange distribution with the numbers means equal to \code{size}, the degrees of freedom equal to \code{df} and the number of 
+Computes the probability density, the cumulative distribution function and the quantile function and generates random samples for the  externally studentized normal midrange distribution with the numbers means equal to \code{size}, the degrees of freedom equal to \code{df} and the number of
 points of the Gauss-Legendre quadrature equal to \code{np}.}
 
 \usage{
@@ -33,14 +33,14 @@ vector size to be simulated \eqn{n > 1}.
 degrees of freedom \eqn{df > 0}.
 }
  \item{np}{
-number of points of the gaussian quadrature \eqn{np > 2}. 
-}     
+number of points of the gaussian quadrature \eqn{np > 2}.
+}
  \item{log, log.p}{
 logical argument; if \code{TRUE}, the probabilities \eqn{p} are given as \eqn{log(p)}.
-}  
+}
  \item{lower.tail}{
 logical argument; if \code{TRUE}, the probabilities are \eqn{P[X \leq x]} otherside, \eqn{P[X \geq x].}
-}  
+}
  \item{eps}{
  stopping criterion for Newton-Raphson's iteraction method.
  }
@@ -73,15 +73,7 @@ generates random deviates.}
 Batista, BDO; Ferreira, DF. The  externally studentized normal midrange distribution. Submmited for publications. 2012.
 }
 
-\author{
-Ben Deivide de Oliveira Batista and Daniel Furtado Ferreira.
 
-Maintainer: Daniel Furtado Ferreira \email{<danielff@dex.ufla.br>}
-}
-
-\seealso{
-Package homepage: \url{<www.dex.ufla.br/~danielff/r_resources.html>}
-}
 
 \examples{
 library(SMR)
