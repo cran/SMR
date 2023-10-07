@@ -1,3 +1,5 @@
+useDynLib(SMR)
+importFrom(Rcpp, sourceCpp)
 importFrom("stats", "dnorm", "pnorm", "rchisq", "rnorm")
 export(dSMR, pSMR, qSMR, rSMR)
 

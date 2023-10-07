@@ -1,4 +1,5 @@
 \name{SMR}
+\alias{SMR-package}
 \alias{dSMR}
 \alias{pSMR}
 \alias{qSMR}
@@ -70,7 +71,7 @@ where, \eqn{q} is the quantile of  externally studentized  midrange distribution
 generates random deviates.}
 
 \references{
-Batista, BDO; Ferreira, DF. The  externally studentized normal midrange distribution. Submmited for publications. 2012.
+BATISTA, B. D. de O.; FERREIRA, D. F. SMR: An R package for computing the externally studentized normal midrange distribution. The R Journal, v. 6, n. 2, p. 123-136, dez. 2014.
 }
 
 
